@@ -3,117 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASF Swell — Direção e período do swell por spot</title>
-<meta name="description" content="Análise técnica de swell por spot: direção, período, altura e a melhor janela do dia. Rede ASF — surf feminino.">
-<style>
-:root{--primary:#0e2439;--secondary:#00a8cc;--accent:#f4d03f;--coral:#ff6b6b;--success:#2ecc71;--purple:#9b59b6;--gray-600:#5b6b7a;--bg:#f4f8fb}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
-body{background:var(--bg);color:var(--primary)}
-header{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:28px 20px;text-align:center}
-header h1{font-size:26px}header p{opacity:.9;font-size:14px;margin-top:6px}
-.wrap{max-width:960px;margin:0 auto;padding:20px}
-.card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(14,36,57,.08);margin-bottom:16px}
-select{width:100%;padding:12px;border:2px solid var(--secondary);border-radius:12px;font-size:16px;background:#fff;color:var(--primary)}
-.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;color:#fff}
-.b-ok{background:var(--success)}.b-mid{background:var(--accent);color:var(--primary)}.b-low{background:var(--gray-600)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}
-.stat{background:var(--bg);border-radius:12px;padding:10px;text-align:center}
-.stat b{display:block;font-size:18px}.stat span{font-size:11px;color:var(--gray-600)}
-.arrow{display:inline-block;transition:transform .3s;font-size:22px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:8px 6px;text-align:left;border-bottom:1px solid #e6edf3}
-th{font-size:11px;text-transform:uppercase;color:var(--gray-600)}
-.day-best{background:rgba(46,204,113,.12);border-radius:8px}
-.loading{text-align:center;padding:30px;color:var(--gray-600)}
-nav.links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
-nav.links a{font-size:12px;text-decoration:none;color:var(--primary);background:#fff;padding:6px 12px;border-radius:999px;box-shadow:0 1px 4px rgba(14,36,57,.1)}
-footer{text-align:center;font-size:12px;color:var(--gray-600);padding:20px}
-.note{font-size:12px;color:var(--gray-600);margin-top:10px;line-height:1.5}
-</style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1643806355443576" crossorigin="anonymous"></script>
+<title>ASF Swell agora é ASF Previsão — redirecionando</title>
+<meta name="description" content="A análise de swell (direção, período e altura por spot) agora está unificada na central ASF Previsão. Redirecionando…">
+<link rel="canonical" href="https://previsao.asf.surf/">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="refresh" content="3;url=https://previsao.asf.surf/">
+<style>body{font-family:'Segoe UI',system-ui,sans-serif;background:#0e2439;color:#fff;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;margin:0;padding:1rem}a{color:#00a8cc;font-weight:700}</style>
 </head>
 <body>
-<header>
-<h1>🌊 ASF Swell</h1>
-<p>Direção e período do swell por spot + melhor janela do dia · 7 dias</p>
-</header>
-<nav class="links" id="netbar"></nav>
-<div class="wrap">
-<div class="card">
-<label for="spot" style="font-weight:600;font-size:14px">📍 Escolha o spot</label>
-<select id="spot" style="margin-top:8px"></select>
-<p class="note" id="spotinfo"></p>
+<div>
+<h1>🌊 ASF Swell mudou de casa</h1>
+<p>Todo o conteúdo de swell — direção, período e altura por spot — agora está unificado na <a href="https://previsao.asf.surf/">ASF Previsão</a>, junto com vento, maré e temperatura da água.</p>
+<p>Redirecionando em 3 segundos… <a href="https://previsao.asf.surf/">Ir agora →</a></p>
 </div>
-<div class="card" id="now"><div class="loading">Carregando condições…</div></div>
-<div class="card">
-<h3 style="margin-bottom:10px">📅 Melhores janelas — próximos 7 dias</h3>
-<div id="week"><div class="loading">Calculando…</div></div>
-</div>
-<div class="card">
-<h3 style="margin-bottom:8px">🧭 Como ler</h3>
-<p class="note">Cada spot tem uma <b>exposição</b> (direção para onde a praia "olha"). O swell rende mais quando sua direção se alinha à exposição. <b>Período ≥ 10s</b> = swell de qualidade (força e organização). A janela de pico combina alinhamento + período + altura. Dados: Open-Meteo Marine (atualizado a cada 6h).</p>
-</div>
-</div>
-<footer>Feito com 💜 pela rede ASF · <a href="https://acarolmourad-commits.github.io/asf-app/" style="color:var(--secondary)">Voltar ao hub</a></footer>
-<script>
-const SPOTS=[
-{name:"Itaguaré (Bertioga)",lat:-23.18,lon:-45.96,face:135,desc:"Praia de tombo, pega swells de E/SE. Clássica de Bertioga."},
-{name:"Praia Branca (Bertioga)",lat:-23.30,lon:-46.08,face:150,desc:"Acesso por trilha, fundo de areia, swell SE/S."},
-{name:"Riviera de São Lourenço",lat:-23.80,lon:-45.94,face:165,desc:"Beach break extenso, melhor com S/SE."},
-{name:"Boracéia",lat:-23.49,lon:-45.88,face:140,desc:"Quebras longas com SE, menos crowd."},
-{name:"Juquehy",lat:-23.52,lon:-45.43,face:150,desc:"Direitas e esquerdas de areia, SE/S."},
-{name:"Barra do Una",lat:-23.47,lon:-45.07,face:150,desc:"Boca do rio + beach break, S/SE."},
-{name:"Praia da Baleia",lat:-23.47,lon:-45.17,face:135,desc:"Exposta a E/SE, pega swell pequeno."},
-{name:"Santiago",lat:-23.62,lon:-45.42,face:145,desc:"Fundeio de areia, boa com SE."},
-{name:"Paúba",lat:-23.63,lon:-45.52,face:140,desc:"Picos de areia variados, E/SE."},
-{name:"Maresias",lat:-23.65,lon:-45.55,face:160,desc:"A mais consistente: S/SE entram com força."}
-];
-const DIRS=["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"];
-const compass=d=>DIRS[Math.round(d/22.5)%16];
-function angDiff(a,b){let d=Math.abs(a-b)%360;return d>180?360-d:d}
-function quality(score){return score>=0.75?["Clássico","b-ok"]:score>=0.5?["Bom","b-mid"]:["Fraco","b-low"]}
-function score(h,p,dir,face){const align=Math.cos(angDiff(dir,face)*Math.PI/180);const a=Math.max(0,align);const ps=Math.min(p/14,1);const hs=h>=0.5&&h<=2?1:(h<0.5?h/0.5:Math.max(0.4,1-(h-2)/2));return a*0.45+ps*0.35+hs*0.2}
-const sel=document.getElementById('spot');
-SPOTS.forEach((s,i)=>{const o=document.createElement('option');o.value=i;o.textContent=s.name;sel.appendChild(o)});
-sel.value=localStorage.getItem('asf_swell_spot')||9;
-sel.onchange=()=>{localStorage.setItem('asf_swell_spot',sel.value);load()};
-async function load(){
-const s=SPOTS[sel.value];
-document.getElementById('spotinfo').innerHTML=`Exposição da praia: <b>${compass(s.face)} (${s.face}°)</b> · ${s.desc}`;
-document.getElementById('now').innerHTML='<div class="loading">Carregando condições…</div>';
-document.getElementById('week').innerHTML='<div class="loading">Calculando…</div>';
-try{
-const u=`https://marine-api.open-meteo.com/v1/marine?latitude=${s.lat}&longitude=${s.lon}&hourly=swell_wave_height,swell_wave_direction,swell_wave_period&forecast_days=7&timezone=America%2FSao_Paulo`;
-const r=await fetch(u);const j=await r.json();const H=j.hourly;
-const nowIx=H.time.findIndex(t=>new Date(t)>=new Date());
-const i=nowIx<0?0:nowIx;
-const h=H.swell_wave_height[i],p=H.swell_wave_period[i],d=H.swell_wave_direction[i];
-const sc=score(h,p,d,s.face);const[qt,qc]=quality(sc);
-document.getElementById('now').innerHTML=`<h3>⚡ Agora — ${s.name}</h3>
-<div class="grid">
-<div class="stat"><b>${h?.toFixed(1)??'–'} m</b><span>Altura do swell</span></div>
-<div class="stat"><b>${p?.toFixed(0)??'–'} s</b><span>Período</span></div>
-<div class="stat"><b><span class="arrow" style="transform:rotate(${d+180}deg)">⬆️</span> ${compass(d??0)}</b><span>Direção do swell</span></div>
-<div class="stat"><b><span class="badge ${qc}">${qt}</span></b><span>Condição p/ este spot</span></div>
-</div>`;
-// best window per day
-const days={};
-H.time.forEach((t,ix)=>{const dt=new Date(t);if(dt<new Date())return;const k=t.slice(0,10);
-const scx=score(H.swell_wave_height[ix],H.swell_wave_period[ix],H.swell_wave_direction[ix],s.face);
-(days[k]=days[k]||[]).push({t:dt,sc:scx,h:H.swell_wave_height[ix],p:H.swell_wave_period[ix],d:H.swell_wave_direction[ix]});});
-let rows='';
-Object.keys(days).slice(0,7).forEach(k=>{const arr=days[k];let best=arr[0],bi=0;arr.forEach((x,ix)=>{if(x.sc>best.sc){best=x;bi=ix}});
-const end=arr[Math.min(bi+1,arr.length-1)].t;
-const[qt,qc]=quality(best.sc);
-const wd=best.t.toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'2-digit'});
-rows+=`<tr class="day-best"><td>${wd}</td><td><b>${best.t.getHours()}h–${end.getHours()+1}h</b></td><td>${best.h?.toFixed(1)}m · ${best.p?.toFixed(0)}s</td><td>${compass(best.d)} (${best.d}°)</td><td><span class="badge ${qc}">${qt}</span></td></tr>`;});
-document.getElementById('week').innerHTML=`<table><tr><th>Dia</th><th>Janela de pico</th><th>Swell</th><th>Direção</th><th>Condição</th></tr>${rows}</table>`;
-}catch(e){document.getElementById('now').innerHTML='<div class="loading">⚠️ Não foi possível carregar agora. Tente novamente em instantes.</div>'}
-}
-// interlinks
-const APPS=[["asf-app","🏠 Hub"],["asf-previsao","🌊 Previsão"],["asf-mare","🌙 Maré"],["asf-praias","🏖️ Praias"],["asf-mapa","🗺️ Mapa"],["asf-goldenhour","🌅 Golden Hour"],["asf-vento","💨 Vento"],["asf-clube","💜 Clube"]];
-document.getElementById('netbar').innerHTML=APPS.map(a=>`<a href="https://acarolmourad-commits.github.io/${a[0]}/">${a[1]}</a>`).join('');
-load();
-</script>
+<script>setTimeout(()=>location.replace('https://previsao.asf.surf/'),3000);</script>
 </body>
 </html>
